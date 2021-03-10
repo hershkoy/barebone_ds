@@ -1,12 +1,12 @@
 version: "3.3"
 
 services:
-  cpu:
+  barebone_ds_cpu:
     build:
       context: ./
       dockerfile: ./docker_cpu/Dockerfile
 
-  gpu:
+  barebone_ds_gpu:
     build:
       context: ./
       dockerfile: ./docker_gpu/Dockerfile      

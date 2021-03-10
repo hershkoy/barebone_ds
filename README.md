@@ -26,8 +26,33 @@ sudo rm /var/cache/apt/archives/lock
 sudo rm /var/lib/dpkg/lock*
 sudo rm /var/lib/dpkg/updates/*
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+GIT
+
+cp /home/ubuntu/efs/ssh/github_key.pem ~/.ssh/id_rsa     
+ssh-keyscan github.com >> ~/.ssh/known_hosts                  
+chmod 644 ~/.ssh/known_hosts                                  
+chmod 600 ~/.ssh/id_rsa                                       
+ssh -T git@github.com     
+
+to clone:
+git clone git@github.com:username/repo_name.git
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+VSCODE 
+install "remote ssh" extension
+
+Host "rememberable name"
+  HostName 123.123.123.123
+  User ubuntu
+  IdentityFile  "c:/absolute/path/to/key.pem"
+  Port 22
+  
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
 DOCKER
 
@@ -41,7 +66,7 @@ sudo systemctl start docker
 
 $ docker-compose build <SERVICE_NAME>            ==> gpu / cpu
 
-$ docker run -it -p 22:22 -p 8080:8080 --name my-container --user root -v //path/to/embedding/:/root/opt -v /${PWD}:/root/main sota-nlp
+$ docker run -it -p 22:22 -p 8080:8080 --name my-container --user root -v //path/to/embedding/:/root/opt -v /${PWD}:/root/main barebone_ds_cpu
 (for windows might need to do 'winpty docker run ...')
 
 
