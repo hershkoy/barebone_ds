@@ -8,7 +8,7 @@ RUN apt-get install -yq python3.6 python3-pip htop nano git wget
 RUN apt-get install -yq libglib2.0-0 autoconf automake 
 RUN apt-get install -yq libtool build-essential unzip 
 RUN apt-get install -yq libarchive-dev vim
-
+RUN apt-get install -yq curl unzip
 
 # Install Python dependencies.
 ADD requirements.txt /
@@ -27,6 +27,14 @@ RUN echo "c.NotebookApp.port = 8080" >> /root/.jupyter/jupyter_notebook_config.p
 #RUN echo "c.NotebookApp.token = ''" >> /root/.jupyter/jupyter_notebook_config.py
 RUN echo "jupyter notebook --no-browser --allow-root" >> /usr/local/bin/run_notebook && chmod +x /usr/local/bin/run_notebook
 
+###
+# AWS CLI
+###
+
+RUN cd /tmp \
+	&& curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+        && unzip awscliv2.zip \
+        && ./aws/install
 
 # Welcome message.
 ADD docker_cpu/welcome_message.txt /
