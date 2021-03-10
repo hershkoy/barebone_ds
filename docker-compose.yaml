@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  cpu:
+    build:
+      context: ./
+      dockerfile: ./docker_cpu/Dockerfile
+
+  gpu:
+    build:
+      context: ./
+      dockerfile: ./docker_gpu/Dockerfile      

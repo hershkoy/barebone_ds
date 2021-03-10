@@ -1,0 +1,13 @@
+
+**/*.ipynb_checkpoints
+**/*.vector_cache
+**/*__MACOSX
+**/*venv
+**/*.virtual_documents
+__pycache__
+
+credentials.ini
+.vscode/
+temp/
+
+myenv/
