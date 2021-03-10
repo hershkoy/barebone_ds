@@ -24,7 +24,7 @@ RUN jupyter contrib nbextension install
 RUN jupyter nbextension enable codefolding/main
 RUN echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.port = 8080" >> /root/.jupyter/jupyter_notebook_config.py
-RUN echo "c.NotebookApp.token = ''" >> /root/.jupyter/jupyter_notebook_config.py
+#RUN echo "c.NotebookApp.token = ''" >> /root/.jupyter/jupyter_notebook_config.py
 RUN echo "jupyter notebook --no-browser --allow-root" >> /usr/local/bin/run_notebook && chmod +x /usr/local/bin/run_notebook
 
 

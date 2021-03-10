@@ -64,9 +64,9 @@ from the root folder:
 sudo systemctl unmask docker
 sudo systemctl start docker
 
-$ docker-compose build <SERVICE_NAME>            ==> gpu / cpu
+$ docker-compose build <SERVICE_NAME>            ==> barebone_ds_cpu / barebone_ds_gpu
 
-$ docker run -it -p 22:22 -p 8080:8080 --name my-container --user root -v //path/to/embedding/:/root/opt -v /${PWD}:/root/main barebone_ds_cpu
+$ docker run -it -p 8080:8080 --name my-container --user root -v //path/to/embedding/:/root/opt -v /${PWD}:/root/main bareboneds_barebone_ds_cpu
 (for windows might need to do 'winpty docker run ...')
 
 
