@@ -13,42 +13,52 @@ open port 2049
 make sure efs security is same as ec2 instance!
 
 2) There is known issues when mounting the EFS to new instance (ubuntu)
+
+```
 sudo apt-get update
 sudo apt-get install -y git binutils make
 git clone https://github.com/aws/efs-utils
 cd efs-utils
 make deb
 sudo apt-get install -y ./build/amazon-efs-utils*deb
+```
 
 if any of the steps about complains about lock, do these:
+
+```
 sudo rm /var/lib/apt/lists/lock
 sudo rm /var/cache/apt/archives/lock
 sudo rm /var/lib/dpkg/lock*
 sudo rm /var/lib/dpkg/updates/*
+```
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 GIT
 
+```
 cp /home/ubuntu/efs/ssh/github_key.pem ~/.ssh/id_rsa     
 ssh-keyscan github.com >> ~/.ssh/known_hosts                  
 chmod 644 ~/.ssh/known_hosts                                  
 chmod 600 ~/.ssh/id_rsa                                       
 ssh -T git@github.com     
+```
 
 to clone:
-git clone git@github.com:username/repo_name.git
+> git clone git@github.com:username/repo_name.git
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 VSCODE 
 install "remote ssh" extension
 
+```
 Host "rememberable name"
   HostName 123.123.123.123
   User ubuntu
   IdentityFile  "c:/absolute/path/to/key.pem"
   Port 22
+```
   
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -71,10 +81,15 @@ $ docker run -it -p 8080:8080 --name my-container --user root -v //path/to/embed
 
 
 on AWS to run with GPU, use:
---gpus all (https://towardsdatascience.com/how-to-set-up-docker-for-deep-learning-on-aws-bce751eaf662) => this worked for me
---runtime=nvidia  (https://wadehuang36.github.io/2019/05/29/a-easy-way-to-use-nvidia-docker-on-aws.html)
 
-$ docker run -it --gpus all -p 22:22 -p 8080:8080 --name sota-nlp-container --user root -v //path/to/embedding/:/root/opt -v /${PWD}:/root/main sota-nlp
+> --gpus all (https://towardsdatascience.com/how-to-set-up-docker-for-deep-learning-on-aws-bce751eaf662) => this worked for me
+
+or
+
+> --runtime=nvidia  (https://wadehuang36.github.io/2019/05/29/a-easy-way-to-use-nvidia-docker-on-aws.html)
+
+for example:
+$ docker run -it --gpus all -p 8080:8080 --name container-name --user root -v //path/to/embedding/:/root/opt -v /${PWD}:/root/main image_name
 
 
 use run_notebook to open jupyter, it will open on 127.0.0.1:8080
