@@ -1,4 +1,4 @@
-FROM nvidia/cuda
+FROM nvidia/cuda:11.2.1-runtime-ubuntu18.04
 
 ENV TZ=Europe/Kiev
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
