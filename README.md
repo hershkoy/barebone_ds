@@ -91,8 +91,16 @@ or
 for example:
 $ docker run -it --gpus all -p 8080:8080 --name container-name --user root -v //path/to/embedding/:/root/opt -v /${PWD}:/root/main image_name
 
-
 use run_notebook to open jupyter, it will open on 127.0.0.1:8080
+
+attach VSCODE to a running container:
+
+1) open vscode on empty folder and in terminal run this command:
+
+> ssh -i test-key.pem -NL localhost:45312:/var/run/docker.sock ubuntu@18.191.237.1
+
+2) File => Prefences => Settings => Workspace => docker.host, insert: tcp://localhost:45312
+3) On the sidebar, click docker icon. You should see the container on remote host. Right click and attach to container.
 
 
 ++++++++++++++++
